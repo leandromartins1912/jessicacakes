@@ -1,0 +1,27 @@
+# Render Blueprint — site estático da Jéssica Cakes
+# No Render: New > Blueprint > escolha este repositório.
+services:
+  - type: web
+    name: jessica-cakes
+    runtime: static
+    buildCommand: echo "site estático, sem build"
+    staticPublishPath: ./public
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: sameorigin
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /css/*
+        name: Cache-Control
+        value: public, max-age=86400
+      - path: /js/*
+        name: Cache-Control
+        value: public, max-age=86400
+      - path: /img/*
+        name: Cache-Control
+        value: public, max-age=604800
